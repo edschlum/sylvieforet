@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html manifest="static/cache/cache.manifest">
+	<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Sylvie</title>
+    
+    <!--//////////Stylesheet////////////////////////////////////////////-->
+    <link rel="stylesheet" href="static/stylesheets/jqtouch/jqtouch.css" type="text/css" />
+    <link rel="stylesheet" href="static/stylesheets/jqtouch/apple/theme.css" type="text/css" />
+    <link rel="stylesheet" href="static/stylesheets/sylvie.css" type="text/css" />
+    <link rel="stylesheet" href="static/stylesheets/sylvie_jqtouch.css" type="text/css" />
+	<!--////////////////////////////////////////////////////////////////-->
+    
+    <!--//////////External//////////////////////////////////////////////-->
+    <script type="text/javascript" charset="utf-8" src="static/js/External/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/External/jquery-ui.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/External/jqtouch.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/External/jqt.gestures.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/External/jqtouch.transitions.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/External/md5.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/External/phonegap.js"></script>
+    <!--////////////////////////////////////////////////////////////////-->
+    
+    <!--////////////Geoportail Stylesheet///////////////////////////////-->
+    <!-- import OpenLayers/Geoportal CSS to ease overloading their styles : --> 
+    <link rel="stylesheet" type="text/css" href="http://api.ign.fr/geoportail/api/js/1.2/theme/default/style.css"/>
+    <link rel="stylesheet" type="text/css" href="http://api.ign.fr/geoportail/api/js/1.2/theme/default/ie6-style.css"/>
+    <link rel="stylesheet" type="text/css" href="http://api.ign.fr/geoportail/api/js/1.2/theme/default/framedCloud.css"/>
+    <link rel="stylesheet" type="text/css" href="http://api.ign.fr/geoportail/api/js/1.2/theme/geoportal/style.css"/>
+    <link rel="stylesheet" type="text/css" href="http://api.ign.fr/geoportail/api/js/1.2/theme/geoportal/standard.css"/>
+    <!-- OpenLayers :--> 
+    <link id="__OpenLayersCss__" href="http://api.ign.fr/geoportail/api/js/1.2/theme/default/style.css" type="text/css" rel="stylesheet"/>
+    <!--////////////////////////////////////////////////////////////////-->
+    
+    <!--/////////Geoportail////////////////////////////////////////////-->
+    
+    <script type="text/javascript" src="http://api.ign.fr/geoportail/api?v=1.2&key=3572244384406335984&instance=viewer&includeEngine=true"></script>
+    
+    <!--////////////////////////////////////////////////////////////////-->
+    
+    <!--/////////Sylvie/////////////////////////////////////////////////-->
+    
+    <script type="text/javascript" charset="utf-8" src="static/js/Sylvie.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/SylvieDB.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/Image.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/GeoRMHandler.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/Geolocate.js"></script>
+    <script type="text/javascript" charset="utf-8" src="static/js/LoadScripts.js"></script>
+    </head>
+    
+    <body onload="overload();">
+		<div id="jqt">
+			<div id="loading">
+			</div>
+			<div id="connexion">
+				<div class="toolbar">
+					<h1>Connexion</h1>
+				</div>
+				<div>
+					<form>
+						<ul>
+							<li>Utilisateur
+								<input type="text" id="login" value=""/>
+							</li>
+							<li>Mot de passe
+								<input type="password" id="password" value=""/>
+							</li>
+							<li id="password-confirmation" style="display:none;">
+								<input type="password" id="password-confirm"/>
+							</li>
+							<li>
+								<a id="button_connexion" class="whiteButton">Connexion</a>
+								<a id="create" class="whiteButton" style="display:none;">Enregistrement</a>
+							</li>
+						</ul>
+					</form>
+				</div>
+				<div id="messages"></div>
+			</div>
+			<div id="blank">
+			</div>
+            <div id="map-list">
+				<div class="toolbar">
+					<h1>Cartes</h1>
+					<a id="back" class="myBackButton">Retour</a>
+                    <div class="group">
+                        <a id="map-create" class="button">Nouvelle carte</a>
+                    </div>
+				</div>
+				<div class="items" id="map-item">
+					<ul>
+					</ul>
+				</div>
+                <div id="map-options" class="options" style="display:none;position:absolute;bottom:0;">
+					<a id="show" class="whiteButton" style="margin-top:30px;">Afficher</a>
+                    <a id="share" class="whiteButton" style="margin-top:30px;">Partager</a>
+                    <a id="change" class="whiteButton" style="margin-top:30px;">Modifier</a>
+					<a id="cancel" class="whiteButton" style="margin-top:30px;">Annuler</a>
+					<a id="delete" class="redButton" style="margin-top:70px;">Supprimer</a>
+				</div>
+                <div class="messages"></div>
+			</div>
+            <div id="object-list">
+				<div class="toolbar">
+					<h1>Tracés</h1>
+					<a id="back" class="myBackButton">Sauver</a>
+                    <!-- <a id="object-create" class="button" style="visibility:hidden;">Nouvel objet</a> -->
+                    <a id="map-show" class="button" style="visibility:hidden;">Afficher carte</a>
+				</div>
+<!--
+				<div class="items">
+					<ul>
+					<li class="arrow"><a onclick="javascript:newObject();">Ajouter un nouveau tracé...</a></li>
+					</ul>
+				</div>
+-->
+				<div class="items" id="object-item">
+				</div>
+                <div id="object-options" class="options" style="display:none;position:absolute;bottom:0;">
+                    <a id="change" class="whiteButton" style="margin-top:30px;">Modifier</a>
+					<a id="cancel" class="whiteButton" style="margin-top:30px;">Annuler</a>
+					<a id="delete" class="redButton" style="margin-top:70px;">Supprimer</a>
+				</div>
+                <div class="messages"></div>
+			</div>
+            <div id="permission-list">
+				<div class="toolbar">
+					<h1>Partage</h1>
+					<a id="back" class="myBackButton">Retour</a>
+				</div>
+				<div class="content">
+					<form>
+						<ul class="edit rounded">
+							<li>Destinataire
+								<input type="text" id="share-user" value=""/>
+							</li>
+							<li>
+								<a id="save" class="whiteButton">Partager</a>
+							</li>
+						</ul>
+                        <div class="items" id="permission-item">
+                            <ul>
+                            </ul>
+                        </div>
+					</form>
+				</div>
+			</div>
+            <div id="map-edit">
+				<div class="toolbar">
+					<h1>Carte</h1>
+					<a id="back" class="myBackButton">Retour</a>
+				</div>
+				<div class="content">
+					<form>
+						<ul class="edit rounded">
+							<li>Nom
+								<input type="text" id="map-name" value=""/>
+							</li>
+							<li>Description
+								<input type="text" id="map-description" value=""/>
+                            </li>
+							<li>
+								<a id="save" class="whiteButton" style="margin:20px; margin-top:50px;">Enregistrer</a>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+            <div id="object-edit">
+				<div class="toolbar">
+					<h1>Tracés</h1>
+					<a id="back" class="myBackButton">Retour</a>
+				</div>
+				<div class="content">
+					<form>
+						<ul class="edit rounded">
+							<li>Nom
+								<input type="text" id="object-name" value=""/>
+							</li>
+							<li>Catégorie</li>
+                                <form id="radio-type">
+								    <!-- <input type="text" id="object-category" value=""/> -->
+                                    <li><input type="radio" name="radio-group" value="Point" id="radio-point" title="Point" checked></li>
+                                    <li><input type="radio" name="radio-group" value="Chemin" id="radio-chemin" title="Chemin"></li>
+                                    <li><input type="radio" name="radio-group" value="Zone" id="radio-zone" title="Zone"></li>
+                                </form>
+							<li>
+								<a id="save" class="whiteButton" style="margin:20px; margin-top:50px;">Enregistrer</a>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+	        <div id="loading-page">
+                Chargement/synchronisation en cours...
+            </div>
+            <div id="map">
+				<div id="icon-toolbar"></div>
+				<div id="gps-state"></div>
+              <!--  <div id="icon-cache"></div> -->
+             <!--   <div id="icon-flush"></div> -->
+             <!--   <div id="icon-connexion"></div> -->
+                <div id="icon-gps"></div>
+             <!--   <div id="icon-sync"></div> -->
+                <div id="icon-zoom-in"></div>
+                <div id="icon-zoom-out"></div>
+				<div class="toolbar">
+					<h1></h1>
+					<a id="back" class="myBackButton">Retour</a>
+                    <a id="layers-button" class="button">Fonds de cartes</a>
+				</div>
+				<div id="map-view-container">
+    				<div id="map-view"></div>
+                </div>
+				<div class="messages"></div>
+			</div>
+            <div id="layer-list">
+				<div class="toolbar">
+					<h1>Preferences</h1>
+					<a id="back" class="myBackButton">OK</a>
+				</div>
+				<div id="layer-item" class="items">
+					<ul>
+					</ul>
+				</div>
+			</div>
+			<div id="point-edit">
+				<div class="toolbar">
+					<h1>Point</h1>
+					<a id="back" class="myBackButton">Retour</a>
+				</div>
+				<div>
+					<form>
+						<ul class="edit rounded">
+							<li>Nom
+                                <input type="text" id="point-name" value=""/>
+							</li>
+							<li>Description
+								<input type="text" id="point-description" value=""/>
+							</li>
+                            <li style="visibility:hidden;">Position
+								<input type="text" id="point-position" value=""/>
+                            </li>
+                            <li>
+								<a id="save" class="whiteButton slidedown" href="#map" style="margin:20px; margin-top:50px;">Enregistrer</a>
+								<a id="delete" class="redButton slidedown" href="#map" style="margin:20px; margin-top:20px;visibility:none;">Supprimer</a>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+			<div id="type">
+				<div class="toolbar">
+					<h1>Sylvie</h1>
+				</div>
+				<div class="items">
+					<ul>
+						<li class="arrow">
+							<a class="map-environment" env="points">Tracer des points d'intérêt</a>
+						</li>
+						<li class="arrow">
+							<a class="map-environment" env="area">Délimiter une zone</a>
+						</li>
+						<li class="arrow">
+							<a class="map-environment" env="line">Tracer un itinéraire</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+        </div>
+    </body>
+</html>

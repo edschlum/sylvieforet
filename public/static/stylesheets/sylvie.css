@@ -1,0 +1,244 @@
+div {
+	z-index: 10;
+}
+
+.map {
+	z-index: 1;
+}
+
+#map-view {
+	height:100%;
+	width:100%;
+    position:absolute;
+	margin-top:0px;
+	margin-left:0px;
+}
+
+.messages {
+	position:fixed;
+	top:0;
+	left:0;
+}
+
+#icon-toolbar {
+	position:absolute;
+	top:100px;
+	right:0%;
+	height:200px;
+	width:50px;
+	z-index:90;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+#gps-state {
+	position:absolute;
+	bottom:40px;
+	left:0px;
+	height:20px;
+	width:100%;
+	z-index:90;
+	text-align: center;
+	background-color: #CCCCFF;
+    font: bold 10px "Helvetica Neue", Helvetica;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+#icon-connexion {
+	position:absolute;
+	top:205px;
+	right:10px;
+	z-index:100;
+	text-align: center;
+	background: url('/static/images/icon-connexion.png');
+    height:28px;
+    width:28px;
+}
+
+#icon-cache {
+	position:absolute;
+	top:155px;
+	right:12px;
+	height:24px;
+	width:24px;
+	z-index:100;
+	text-align: center;
+	background: url('/static/images/icon-cache.png');
+}
+
+#icon-flush {
+	position:absolute;
+	top:260px;
+	right:10px;
+	height:26px;
+	width:26px;
+	z-index:100;
+	text-align: center;
+	background: url('/static/images/icon-flush.png');
+}
+#icon-layer {
+	position:absolute;
+	top:112px;
+	right:8px;
+	height:20px;
+	width:36px;
+	z-index:100;
+	text-align: center;
+	background: url('/static/images/layers.png');
+}
+/*
+#icon-gps {
+	position:absolute;
+	top:400px;
+	left:130px;
+	height:40px;
+	width:40px;
+	z-index:100;
+	text-align: center;
+	background: url('/static/images/icon-gps.png');
+}
+*/
+/*
+#icon-zoom-in {
+	position:absolute;
+	top:400px;
+	left:170px;
+	height:40px;
+	width:40px;
+	z-index:100;
+	text-align: center;
+	background: url('/static/images/icon-zoom-in.png');
+}
+
+#icon-zoom-out {
+	position:absolute;
+	top:400px;
+	left:210px;
+	height:40px;
+	width:40px;
+	z-index:100;
+	text-align: center;
+	background: url('/static/images/icon-zoom-out.png');
+}
+*/
+#icon-zoom-in{
+    z-index:90;
+    top: 50px;
+    background-position: 0 0;
+}
+#icon-zoom-out {
+    z-index:90;
+    top: 75px;
+    background-position: 0 0px;
+}
+#icon-zoom-in,
+#icon-zoom-out {
+    background: rgba(0,0,0,0.2);
+    position: absolute;
+}
+#icon-zoom-in {
+    border-radius: 5px 5px 0 0;
+}
+#icon-zoom-out {
+    border-radius: 0 0 5px 5px ;
+    top: 88px;
+}
+#icon-zoom-out:after ,
+#icon-zoom-in:after{
+    font-weight: bold;
+    content   : '+';
+    font-size : 36px;
+    padding:  7px;
+    z-index: 2000;
+    color     : #fff;
+    line-height: 1em;
+}
+#icon-zoom-out:after{
+    content: '–';
+    line-height: 1em;
+    padding: 0 9px;
+}
+
+#map #footBtns {
+	position:absolute;
+	top:380px;
+	height:100px;
+	width:100%;
+	z-index:10;
+	text-align: center;
+	background: url('../images/footer.png');
+	background-repeat: repeat-x;
+}
+
+#map #footBtns div {
+	width: 100px;
+	height: 100px;
+	float: left;
+	vertical-align: center;
+	background-color: black;
+	color: white;
+	border-bottom: 1px solid white;
+}
+#map #footBtns #addpin {
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	background: url('../images/addpin.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#map #footBtns #locateme {
+	background: url('../images/locateme.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#map #footBtns #layers {
+	background: url('../images/layers.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+#map-preferences .items ul li {
+	padding-left: 30px;
+	color: black;
+}
+#map-preferences .items ul li.enabled {
+	background-image: url('../images/check.jpg');
+	background-repeat:no-repeat;
+	background-position: 10px 16px;
+}
+#interpoint-create {
+	z-index:20;
+	display:none;
+	position:fixed;
+	top:340px;
+	width:380px;
+	background-color:black;
+	padding:none;
+}
+#interpoint-create .redButton, #interpoint-create .whiteButton {
+	margin:10px !important;
+}
+.iscroll-wrapper {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 420px;
+	overflow: scroll;
+}
+.iscroll-wrapper div {
+	padding-bottom: 20px;
+}
+.whiteButton, .redButton {
+	width: 200px;
+}
+.options {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-color: black;
+	z-index: 20;
+}
+.options * {
+	margin: auto;
+}

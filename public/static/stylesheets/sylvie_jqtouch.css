@@ -1,0 +1,31 @@
+#jqt .myBackButton {
+position: absolute;
+overflow: hidden;
+top: 8px;
+left: 6px;
+margin: 0;
+border-width: 0 8px 0 14px;
+padding: 0 3px;
+width: auto;
+max-width: 55px;
+height: 30px;
+line-height: 30px;
+font-family: inherit;
+font-size: 12px;
+font-weight: bold;
+color: #fff;
+text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 0;
+text-overflow: ellipsis;
+text-decoration: none;
+white-space: nowrap;
+background: none;
+-webkit-border-image: url(jqtouch/apple/img/backButton.png) 0 8 0 14;
+
+}
+
+#jqt .myBackButton.active {
+-webkit-border-image: url(jqtouch/apple/img/backButton.png) 0 8 0 14;
+}
+#jqt .myBackButton.disable {
+color: #999999;
+}
